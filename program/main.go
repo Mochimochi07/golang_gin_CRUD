@@ -49,11 +49,22 @@ func createPerson(c *gin.Context) {
 	c.IndentedJSON(http.StatusCreated, newPerson)
 }
 
+func DeletePerson(c *gin.Context) {
+
+	id := c.Param("id")
+	
+	err := DeletePerson(&person, id)
+	
+}
+
+
+
+
 func main() {
 	router := gin.Default()
 	router.GET("/persons", getPersons)
 	router.GET("/persons/:id", PersonById)
 	router.POST("/persons", createPerson)
-	
+	router.DELETE("/persons", DeletePerson)
 	router.Run("localhost:8080")
 }
